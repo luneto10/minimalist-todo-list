@@ -1,0 +1,20 @@
+/* globals.css */
+
+/* Estiliza a scrollbar vertical */
+.simplebar-scrollbar.simplebar-vertical .simplebar-thumb {
+    background-color: rgba(0, 0, 0, 0.5); /* Cor do thumb */
+    border-radius: 4px; /* Bordas arredondadas */
+    width: 8px; /* Largura da scrollbar */
+    min-height: 30px; /* Altura mínima do thumb */
+    transition: background-color 0.2s;
+}
+
+/* Opcional: altera a cor do thumb ao passar o mouse */
+.simplebar-scrollbar.simplebar-vertical .simplebar-thumb:hover {
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+/* Oculta a scrollbar quando não está em uso */
+.simplebar-scrollbar:before {
+    display: none;
+}

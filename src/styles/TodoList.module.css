@@ -1,0 +1,43 @@
+/* Custom Scrollbar */
+/* .itemList {
+    max-width: 700px;
+    width: 600px;
+    max-height: 95vh;
+    min-height: 40px;
+} */
+
+/* Glowing circle effect with Bootstrap button */
+.hover-glow {
+    position: relative;
+    border-radius: 5px;
+}
+
+.hover-glow::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 0;
+    height: 0;
+    background: #dfdfdf;
+    border-radius: 50%;
+    transition: width 0.3s ease, height 0.3s ease, opacity 0.3s ease;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.hover-glow:active::before,
+.hover-glow:hover::before {
+    width: 100%;
+    height: 110%;
+    opacity: 0.3;
+}
+
+
+@media screen and (max-width: 768px) {
+    .itemList {
+        max-width: 100%;
+        min-width: 100%;
+    }
+}

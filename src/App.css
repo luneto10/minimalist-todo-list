@@ -1,0 +1,9 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    height: 100%;
+    box-sizing: border-box;
+    background-color: #dfdfdf;
+    font-family: "Alegreya", serif;
+}
