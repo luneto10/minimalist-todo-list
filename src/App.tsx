@@ -21,7 +21,9 @@ function App() {
             .then((response) => {
                 setTodos(response.data);
             })
-            .catch((error) => console.error("Error fetching data:", error));
+            .catch((error) =>
+                console.error(encodedUrl + "Error fetching data:", error)
+            );
     };
 
     const handleToggle = (id: string) => {
