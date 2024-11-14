@@ -6,6 +6,7 @@ import { Todo } from "./types/types";
 
 function App() {
     const [todos, setTodos] = useState<Todo[]>([]);
+    const apiBaseUrl = import.meta.env.VITE_API_BASE_URL;
 
     useEffect(() => {
         const pathSegments = window.location.pathname;
@@ -14,13 +15,12 @@ function App() {
 
     const getAll = (url: string) => {
         const encodedUrl = encodeURIComponent(url);
-        console.log("Get" + url);
-        console.log((`/api/Task/${encodedUrl}`))
+        console.log("Get " + url);
+        console.log(`${apiBaseUrl}/Task/${encodedUrl}`);
         axios
-            .get(`https://minimaltodolistapi.azurewebsites.net/api/task`)
+            .get(`${apiBaseUrl}/Task/${encodedUrl}`)
             .then((response) => {
-                
-                setTodos(response.data)
+                setTodos(response.data);
             })
             .catch((error) => console.error("Error fetching data:", error));
     };
@@ -30,7 +30,7 @@ function App() {
         if (!todo) return;
 
         axios
-            .put(`/api/Task/${id}`, {
+            .put(`${apiBaseUrl}/Task/${id}`, {
                 ...todo,
                 completed: !todo.completed,
             })
@@ -48,7 +48,7 @@ function App() {
 
     const handleDelete = (id: string) => {
         axios
-            .delete(`/api/Task/${id}`)
+            .delete(`${apiBaseUrl}/Task/${id}`)
             .then(() => {
                 setTodos((prevTodos) =>
                     prevTodos.filter((todo) => todo.id !== id)
@@ -60,7 +60,7 @@ function App() {
     const handleAdd = (todoText: string) => {
         const pathSegments = window.location.pathname;
         axios
-            .post("/api/Task", {
+            .post(`${apiBaseUrl}/Task`, {
                 text: todoText,
                 url: pathSegments,
                 completed: false,
@@ -75,18 +75,18 @@ function App() {
         const encodedUrl = encodeURIComponent(url);
         console.log(url);
         axios
-            .delete(`/api/Task/by-url/${encodedUrl}`)
+            .delete(`${apiBaseUrl}/Task/by-url/${encodedUrl}`)
             .then(() => {
                 setTodos((prevTodos) =>
                     prevTodos.filter((todo) => todo.url !== url)
                 );
             })
-            .catch((error) => console.error("Error deleting todo:", error));
+            .catch((error) => console.error("Error deleting todo by URL:", error));
     };
 
     const handleDeleteAll = () => {
         axios
-            .delete("/api/Task")
+            .delete(`${apiBaseUrl}/Task`)
             .then(() => {
                 setTodos([]);
             })
@@ -100,7 +100,7 @@ function App() {
         if (!todo) return;
 
         axios
-            .put(`/api/Task/${id}`, {
+            .put(`${apiBaseUrl}/Task/${id}`, {
                 ...todo,
                 text: updatedText,
             })
