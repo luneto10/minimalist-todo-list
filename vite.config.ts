@@ -7,7 +7,7 @@ export default defineConfig({
     server: {
         proxy: {
             "/api": {
-                target: "https://minimaltodolistapi.azurewebsites.net",
+                target: "http://localhost:5018",
                 changeOrigin: true,
             },
         },
