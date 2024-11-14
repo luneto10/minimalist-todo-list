@@ -3,6 +3,8 @@ import "./App.css";
 import TodoList from "./components/TodoList";
 import axios from "axios";
 import { Todo } from "./types/types";
+import RouteBox from "./components/RouteBox";
+import Header from "./components/Header";
 
 function App() {
     const [todos, setTodos] = useState<Todo[]>([]);
@@ -117,6 +119,9 @@ function App() {
 
     return (
         <div className="d-flex flex-column justify-content-center align-items-center vh-100">
+            <div className="w-100 position-fixed top-0 start-0 m-3">
+                <Header />
+            </div>
             {window.location.pathname !== "/" ? (
                 <TodoList
                     todos={todos}
@@ -129,25 +134,33 @@ function App() {
                 />
             ) : (
                 <div className="text-center my-5">
-                    <h1 className="display-4 mb-4">
+                    <h1 className="display-4 mb-4 mx-1">
                         Welcome to the Todo App!
                     </h1>
-                    <p className="lead text-muted mb-3">
+                    <p className="lead text-muted mb-3 mx-1 d-none d-lg-block">
                         Add any text to the end of the URL to start your own
                         list.
                     </p>
-                    <p>
+                    <p className="lead text-muted mb-3 mx-1 d-lg-none">
+                        Add any text to the field, click go and start a list.
+                    </p>
+                    <p className="mx-1 d-none d-lg-block">
                         <small>Start by:</small>{" "}
                         <code className="font-weight-bold">
-                            https://minimalist-todo-list.vercel.app/{"{your-name}"}
+                            https://minimalist-todo-list.vercel.app/
+                            {"{your-name}"}
                         </code>
                     </p>
+
+                    <div className="d-flex justify-content-center d-lg-none">
+                        <RouteBox />
+                    </div>
 
                     <p className="position-absolute bottom-0 start-50 translate-middle-x text-muted mb-3 small small-md">
                         <span className="d-none d-md-inline">
                             This is a simple todo app where you can create and
-                            manage your tasks. However, anyone can delete all
-                            tasks... so let's trust each other!
+                            manage your tasks. However, one person can delete
+                            all tasks...
                         </span>
                         <span className="d-inline d-md-none">
                             This is a simple todo app, but remember, anyone can
