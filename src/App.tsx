@@ -65,6 +65,7 @@ function App() {
                 text: todoText,
                 url: pathSegments,
                 completed: false,
+                createdAt: new Date().toISOString(),
             })
             .then((response) => {
                 setTodos((prevTodos) => [...prevTodos, response.data]);
