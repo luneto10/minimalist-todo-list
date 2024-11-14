@@ -15,12 +15,11 @@ function App() {
     const getAll = (url: string) => {
         const encodedUrl = encodeURIComponent(url);
         console.log("Get" + url);
-        console.log(("https://minimaltodolistapi.azurewebsites.net/api/Task"))
+        console.log("https://minimaltodolistapi.azurewebsites.net/api/Task");
         axios
-            .get(`/api/Task/${encodedUrl}`)
+            .get(`https://minimaltodolistapi.azurewebsites.net/api/Task"`)
             .then((response) => {
-                
-                setTodos(response.data)
+                setTodos(response.data);
             })
             .catch((error) => console.error("Error fetching data:", error));
     };
