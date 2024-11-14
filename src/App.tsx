@@ -17,7 +17,7 @@ function App() {
         console.log("Get" + url);
         console.log((`/api/Task/${encodedUrl}`))
         axios
-            .get(`/api/Task/${encodedUrl}`)
+            .get(`https://minimaltodolistapi.azurewebsites.net/api/task`)
             .then((response) => {
                 
                 setTodos(response.data)
