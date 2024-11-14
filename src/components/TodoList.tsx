@@ -17,6 +17,7 @@ interface TodoListProps {
     handleDeleteAll: () => void;
     handleAdd: (todoText: string) => void;
     handleEdit: (id: string, updatedText: string) => void;
+    handleDeleteByUrl: (url: string) => void;
 }
 
 export default function TodoList({
@@ -26,6 +27,7 @@ export default function TodoList({
     handleAdd,
     handleDeleteAll,
     handleEdit,
+    handleDeleteByUrl,
 }: TodoListProps) {
     const [showItemModal, setShowModal] = useState(false);
     const openItemModal = () => setShowModal(true);
@@ -104,6 +106,7 @@ export default function TodoList({
                         show={showConfirmDeleteModal}
                         handleClose={closeConfirmDeleteModal}
                         handleDeleteAll={handleDeleteAll}
+                        handleDeleteByUrl={handleDeleteByUrl}
                     />
                 </div>
             </div>

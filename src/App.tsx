@@ -8,12 +8,15 @@ function App() {
     const [todos, setTodos] = useState<Todo[]>([]);
 
     useEffect(() => {
-        getAll();
+        const pathSegments = window.location.pathname;
+        getAll(pathSegments);
     }, []);
 
-    const getAll = () => {
+    const getAll = (url: string) => {
+        const encodedUrl = encodeURIComponent(url);
+        console.log(url);
         axios
-            .get("/api/Task")
+            .get(`/api/Task/${encodedUrl}`)
             .then((response) => setTodos(response.data))
             .catch((error) => console.error("Error fetching data:", error));
     };
@@ -51,15 +54,30 @@ function App() {
     };
 
     const handleAdd = (todoText: string) => {
+        const pathSegments = window.location.pathname;
         axios
             .post("/api/Task", {
                 text: todoText,
+                url: pathSegments,
                 completed: false,
             })
             .then((response) => {
                 setTodos((prevTodos) => [...prevTodos, response.data]);
             })
             .catch((error) => console.error("Error adding todo:", error));
+    };
+
+    const handleDeleteByUrl = (url: string) => {
+        const encodedUrl = encodeURIComponent(url);
+        console.log(url);
+        axios
+            .delete(`/api/Task/by-url/${encodedUrl}`)
+            .then(() => {
+                setTodos((prevTodos) =>
+                    prevTodos.filter((todo) => todo.url !== url)
+                );
+            })
+            .catch((error) => console.error("Error deleting todo:", error));
     };
 
     const handleDeleteAll = () => {
@@ -83,7 +101,8 @@ function App() {
                 text: updatedText,
             })
             .then(() => {
-                console.log("Todo edited successfully");
+                const currentUrl = window.location.href;
+                console.log(currentUrl);
                 setTodos((prevTodos) =>
                     prevTodos.map((todo) =>
                         todo.id === id ? { ...todo, text: updatedText } : todo
@@ -102,6 +121,7 @@ function App() {
                 handleAdd={handleAdd}
                 handleDeleteAll={handleDeleteAll}
                 handleEdit={handleEdit}
+                handleDeleteByUrl={handleDeleteByUrl}
             />
         </div>
     );
