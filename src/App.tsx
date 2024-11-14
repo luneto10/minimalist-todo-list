@@ -1,72 +1,96 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./App.css";
-import { v4 as uuidv4 } from "uuid";
 import TodoList from "./components/TodoList";
+import axios from "axios";
+import { Todo } from "./types/types";
 
 function App() {
-    const [todos, setTodos] = useState([
-        {
-            id: uuidv4(),
-            todo: "Buy butter",
-            completed: false,
-        },
-        { id: uuidv4(), todo: "Buy eggs", completed: false },
-        { id: uuidv4(), todo: "Buy bread", completed: false },
-        { id: uuidv4(), todo: "Buy cheese", completed: false },
-        { id: uuidv4(), todo: "Buy milk", completed: false },
-        { id: uuidv4(), todo: "Buy milk", completed: false },
-        { id: uuidv4(), todo: "Buy milk", completed: false },
-        { id: uuidv4(), todo: "Buy milk", completed: false },
-        { id: uuidv4(), todo: "Buy milk", completed: false },
-        { id: uuidv4(), todo: "Buy milk", completed: false },
-        { id: uuidv4(), todo: "Buy milk", completed: false },
-        { id: uuidv4(), todo: "Buy milk", completed: false },
-        { id: uuidv4(), todo: "Buy milk", completed: false },
-        { id: uuidv4(), todo: "Buy milk", completed: false },
-        { id: uuidv4(), todo: "Buy milk", completed: false },
-        { id: uuidv4(), todo: "Buy milk", completed: false },
-        { id: uuidv4(), todo: "Buy milk", completed: false },
-        { id: uuidv4(), todo: "Buy milk", completed: false },
-        { id: uuidv4(), todo: "Buy milk", completed: false },
-        { id: uuidv4(), todo: "Buy milk", completed: false },
-        { id: uuidv4(), todo: "Buy milk", completed: false },
-        { id: uuidv4(), todo: "Buy milk", completed: false },
-        { id: uuidv4(), todo: "Buy milk", completed: false },
-        { id: uuidv4(), todo: "Buy milk", completed: false },
-        { id: uuidv4(), todo: "Buy milk", completed: false },
-        { id: uuidv4(), todo: "Buy milk", completed: false },
-        { id: uuidv4(), todo: "10", completed: false },
-    ]);
+    const [todos, setTodos] = useState<Todo[]>([]);
+
+    useEffect(() => {
+        getAll();
+    }, []);
+
+    const getAll = () => {
+        axios
+            .get("/api/Task")
+            .then((response) => setTodos(response.data))
+            .catch((error) => console.error("Error fetching data:", error));
+    };
 
     const handleToggle = (id: string) => {
-        setTodos((prevTodos) =>
-            prevTodos.map((todo) =>
-                todo.id === id ? { ...todo, completed: !todo.completed } : todo
-            )
-        );
+        const todo = todos.find((t) => t.id === id);
+        if (!todo) return;
+
+        axios
+            .put(`/api/Task/${id}`, {
+                ...todo,
+                completed: !todo.completed,
+            })
+            .then(() => {
+                setTodos((prevTodos) =>
+                    prevTodos.map((todo) =>
+                        todo.id === id
+                            ? { ...todo, completed: !todo.completed }
+                            : todo
+                    )
+                );
+            })
+            .catch((error) => console.error("Error toggling todo:", error));
     };
 
     const handleDelete = (id: string) => {
-        setTodos((prevTodos) => prevTodos.filter((todo) => todo.id !== id));
+        axios
+            .delete(`/api/Task/${id}`)
+            .then(() => {
+                setTodos((prevTodos) =>
+                    prevTodos.filter((todo) => todo.id !== id)
+                );
+            })
+            .catch((error) => console.error("Error deleting todo:", error));
     };
 
     const handleAdd = (todoText: string) => {
-        setTodos((prevTodos) => [
-            ...prevTodos,
-            { id: uuidv4(), todo: todoText, completed: false },
-        ]);
+        axios
+            .post("/api/Task", {
+                text: todoText,
+                completed: false,
+            })
+            .then((response) => {
+                setTodos((prevTodos) => [...prevTodos, response.data]);
+            })
+            .catch((error) => console.error("Error adding todo:", error));
     };
 
     const handleDeleteAll = () => {
-        setTodos([]);
+        axios
+            .delete("/api/Task")
+            .then(() => {
+                setTodos([]);
+            })
+            .catch((error) =>
+                console.error("Error deleting all todos:", error)
+            );
     };
 
     const handleEdit = (id: string, updatedText: string) => {
-        setTodos((prevTodos) =>
-            prevTodos.map((todo) =>
-                todo.id === id ? { ...todo, todo: updatedText } : todo
-            )
-        );
+        const todo = todos.find((t) => t.id === id);
+        if (!todo) return;
+
+        axios
+            .put(`/api/Task/${id}`, {
+                ...todo,
+                text: updatedText,
+            })
+            .then(() => {
+                console.log("Todo edited successfully");
+                setTodos((prevTodos) =>
+                    prevTodos.map((todo) =>
+                        todo.id === id ? { ...todo, text: updatedText } : todo
+                    )
+                );
+            })
+            .catch((error) => console.error("Error editing todo:", error));
     };
 
     return (

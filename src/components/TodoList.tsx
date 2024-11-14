@@ -3,7 +3,7 @@ import { Todo } from "../types/types";
 import styles from "../styles/TodoList.module.css";
 import { useState } from "react";
 import ModalTextItem from "./ModalText";
-import AddTaskIcon from '@mui/icons-material/AddTask';
+import AddBoxIcon from '@mui/icons-material/AddBox';
 import DeleteAll from "./DeleteAll";
 import { Button } from "react-bootstrap";
 import SimpleBar from "simplebar-react";
@@ -51,7 +51,7 @@ export default function TodoList({
                                 className={`btn border-0 p-0 pe-1 ${styles["hover-glow"]}`}
                                 onClick={openItemModal}
                             >
-                                <AddTaskIcon fontSize="large" />
+                                <AddBoxIcon fontSize="large" />
                             </button>
                             <Button
                                 variant={

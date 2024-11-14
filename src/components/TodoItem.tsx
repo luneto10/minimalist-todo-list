@@ -13,7 +13,7 @@ interface TodoItemProps extends Todo {
 
 export default function TodoItem({
     id,
-    todo,
+    text: todo,
     completed,
     handleToggle,
     handleDelete,
