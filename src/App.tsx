@@ -14,10 +14,14 @@ function App() {
 
     const getAll = (url: string) => {
         const encodedUrl = encodeURIComponent(url);
-        console.log(url);
+        console.log("Get" + url);
+        console.log((`/api/Task/${encodedUrl}`))
         axios
             .get(`/api/Task/${encodedUrl}`)
-            .then((response) => setTodos(response.data))
+            .then((response) => {
+                
+                setTodos(response.data)
+            })
             .catch((error) => console.error("Error fetching data:", error));
     };
 
