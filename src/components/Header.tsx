@@ -1,11 +1,15 @@
-import HomeIcon from '@mui/icons-material/Home';
-import { Link } from 'react-router-dom';
+import HomeIcon from "@mui/icons-material/Home";
 
 export default function Header() {
-  return (
-    <Link to="/" style={{ textDecoration: 'none', color: 'inherit' }}>
-      <HomeIcon className='d-flex'/>
-    </Link>
-  );
+    return (
+        <button
+            className={`btn border-0 p-0 pe-1`}
+            onClick={() => (window.location.pathname = "/")}
+        >
+            <HomeIcon
+                style={{ textDecoration: "none", color: "inherit" }}
+                onClick={() => (window.location.pathname = "/")}
+            />
+        </button>
+    );
 }
-
