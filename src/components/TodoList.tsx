@@ -51,7 +51,7 @@ export default function TodoList({
                                 className={`btn border-0 p-0 pe-1 ${styles["hover-glow"]}`}
                                 onClick={openItemModal}
                             >
-                                <AddBoxIcon fontSize="large" />
+                                <AddBoxIcon color = "inherit" fontSize="large" />
                             </button>
                             <Button
                                 variant={
