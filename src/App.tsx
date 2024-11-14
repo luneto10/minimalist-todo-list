@@ -15,7 +15,7 @@ function App() {
     const getAll = (url: string) => {
         const encodedUrl = encodeURIComponent(url);
         console.log("Get" + url);
-        console.log((`/api/Task/${encodedUrl}`))
+        console.log(("https://minimaltodolistapi.azurewebsites.net/api/Task"))
         axios
             .get(`/api/Task/${encodedUrl}`)
             .then((response) => {
