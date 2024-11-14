@@ -15,15 +15,14 @@ function App() {
     const getAll = (url: string) => {
         const encodedUrl = encodeURIComponent(url);
         console.log("Get" + url);
-        console.log("https://minimaltodolistapi.azurewebsites.net/api/Task");
+        console.log((`/api/Task/${encodedUrl}`))
         axios
-            .get(`https://minimaltodolistapi.azurewebsites.net/api/Task"`)
+            .get(`/api/Task/${encodedUrl}`)
             .then((response) => {
-                setTodos(response.data);
+                
+                setTodos(response.data)
             })
-            .catch((error) =>
-                console.error(encodedUrl + "Error fetching data:", error)
-            );
+            .catch((error) => console.error("Error fetching data:", error));
     };
 
     const handleToggle = (id: string) => {
