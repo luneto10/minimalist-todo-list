@@ -128,10 +128,32 @@ function App() {
                     handleDeleteByUrl={handleDeleteByUrl}
                 />
             ) : (
-                <div className="text-center">
-                    <h1 className="display-4 text-secondary mb-4">Welcome to the Todo App!</h1>
-                    <p className="lead">Add any text to the end of the URL to start a personalized Todo list.</p>
-                    <p>For example: <code>https://minimalist-todo-list.vercel.app/your-name</code></p>
+                <div className="text-center my-5">
+                    <h1 className="display-4 mb-4">
+                        Welcome to the Todo App!
+                    </h1>
+                    <p className="lead text-muted mb-3">
+                        Add any text to the end of the URL to start your own
+                        list.
+                    </p>
+                    <p>
+                        <small>Start by:</small>{" "}
+                        <code className="font-weight-bold">
+                            https://minimalist-todo-list.vercel.app/{"{your-name}"}
+                        </code>
+                    </p>
+
+                    <p className="position-absolute bottom-0 start-50 translate-middle-x text-muted mb-3 small small-md">
+                        <span className="d-none d-md-inline">
+                            This is a simple todo app where you can create and
+                            manage your tasks. However, anyone can delete all
+                            tasks... so let's trust each other!
+                        </span>
+                        <span className="d-inline d-md-none">
+                            This is a simple todo app, but remember, anyone can
+                            delete all...
+                        </span>
+                    </p>
                 </div>
             )}
         </div>
