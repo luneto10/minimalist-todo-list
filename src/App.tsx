@@ -133,10 +133,13 @@ function App() {
     };
 
     return (
-        <div className="d-flex flex-column text-center justify-content-between vh-100">
-            <div className="w-100 m-3 text-start">
+        <div className="d-flex flex-column justify-content-center align-items-center vh-100 overflow-hidden">
+            {/* Header */}
+            <div className="w-100 position-fixed top-0 start-0 m-3">
                 <Header />
             </div>
+
+            {/* Main Content */}
             {window.location.pathname !== "/" ? (
                 <TodoList
                     todos={todos}
@@ -148,48 +151,48 @@ function App() {
                     handleDeleteByUrl={handleDeleteByUrl}
                 />
             ) : (
-                <div className="d-flex flex-column align-items-center justify-content-between my-5">
-                    <div>
-                        <h1 className="display-1 mb-0 mx-1 text-center">
-                            Taskr
-                            <p className="lead text-muted mt-0 mb-3 mx-1">
-                                A collaborative and real-time task manager.
-                            </p>
-                        </h1>
-                        <div className="d-flex text-center mx-1 d-none d-lg-block">
-                            <small>Start by:</small>{" "}
-                            <code className="d-flex font-weight-bold align-items-center">
-                                https://minimalist-todo-list-weld.vercel.app/
-                                <RouteBox
-                                    placeholder="..."
-                                    size="sm"
-                                    background="#efefef"
-                                />
-                            </code>
-                        </div>
-                        <div className="d-flex flex-column align-items-center justify-content-center d-lg-none">
-                            <code className="font-weight-bold align-items-center">
-                                https://minimalist-todo-list-weld.vercel.app/
-                            </code>
-                            <RouteBox placeholder="..." background="#efefef" />
-                        </div>
+                <div className="text-center my-5">
+                    <h1 className="display-1 mb-0 mx-1">
+                        Taskr
+                        <p className="lead text-muted mt-0 mb-3 mx-1">
+                            A collaborative and real-time task manager.
+                        </p>
+                    </h1>
+
+                    {/* URL Input for Larger Screens */}
+                    <div className="d-flex mx-1 d-none d-lg-block">
+                        <small>Start by:</small>{" "}
+                        <code className="d-flex font-weight-bold align-items-center">
+                            https://minimalist-todo-list-weld.vercel.app/
+                            <RouteBox
+                                placeholder="..."
+                                size="sm"
+                                background="#efefef"
+                            />
+                        </code>
                     </div>
+
+                    {/* URL Input for Smaller Screens */}
+                    <div className="d-flex flex-column align-items-center justify-content-center d-lg-none">
+                        <code className="font-weight-bold align-items-center">
+                            https://minimalist-todo-list-weld.vercel.app/
+                        </code>
+                        <RouteBox placeholder="..." background="#efefef" />
+                    </div>
+
+                    {/* Footer */}
+                    <p className="position-fixed bottom-0 start-50 translate-middle-x text-muted mb-3 small small-md w-100 text-center">
+                        <span className="d-none d-md-inline">
+                            This is a simple todo app where you can create and
+                            manage your tasks. However, one person can delete
+                            all tasks...
+                        </span>
+                        <span className="d-inline d-md-none">
+                            This is a simple todo app, but remember, anyone can
+                            delete all...
+                        </span>
+                    </p>
                 </div>
-            )}
-            {window.location.pathname !== "/" ? (
-                <span className="mb-3 small small-md"></span>
-            ) : (
-                <p className="text-muted mb-3 small small-md">
-                    <span className="d-none d-md-inline">
-                        This is a simple todo app where you can create and
-                        manage your tasks. However, one person can delete all
-                        tasks...
-                    </span>
-                    <span className="d-inline d-md-none">
-                        This is a simple todo app, but remember, anyone can
-                        delete all...
-                    </span>
-                </p>
             )}
         </div>
     );
