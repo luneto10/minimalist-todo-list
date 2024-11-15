@@ -132,7 +132,7 @@ function App() {
     };
 
     return (
-        <div className="container-fluid d-flex flex-column justify-content-center align-items-center vh-100 container-safe">
+        <div className="container-fluid d-flex flex-column justify-content-center align-items-center container-safe">
             {/* Header */}
             <div className="w-100 position-fixed top-0 start-0 m-3">
                 <Header />
@@ -150,7 +150,7 @@ function App() {
                     handleDeleteByUrl={handleDeleteByUrl}
                 />
             ) : (
-                <div className="text-center my-5">
+                <div className="text-center">
                     <h1 className="display-1 mb-0 mx-1">
                         Taskr
                         <p className="lead text-muted mt-0 mb-3 mx-1">
