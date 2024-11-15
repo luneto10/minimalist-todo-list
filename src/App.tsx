@@ -30,7 +30,6 @@ function App() {
 
     const getAll = (url: string) => {
         const encodedUrl = encodeURIComponent(url);
-        console.log(encodedUrl);
         axios
             .get(`${apiBaseUrl}/Task/${encodedUrl}`)
             .then((response) => {
@@ -79,7 +78,7 @@ function App() {
                 url: pathSegments,
                 completed: false,
                 createdAt: new Date().toISOString(),
-                userIP: userIp, // Include the IP address here
+                userIP: userIp,
             })
             .then((response) => {
                 setTodos((prevTodos) => [...prevTodos, response.data]);
@@ -133,7 +132,7 @@ function App() {
     };
 
     return (
-        <div className="d-flex flex-column justify-content-center align-items-center vh-100 overflow-hidden">
+        <div className="container-fluid d-flex flex-column justify-content-center align-items-center vh-100 container-safe">
             {/* Header */}
             <div className="w-100 position-fixed top-0 start-0 m-3">
                 <Header />
@@ -181,7 +180,7 @@ function App() {
                     </div>
 
                     {/* Footer */}
-                    <p className="position-fixed bottom-0 start-50 translate-middle-x text-muted mb-3 small small-md w-100 text-center">
+                    <p className="footer-safe text-muted mb-3 small small-md w-100 text-center">
                         <span className="d-none d-md-inline">
                             This is a simple todo app where you can create and
                             manage your tasks. However, one person can delete

@@ -36,13 +36,12 @@ export default function TodoList({
     const [showConfirmDeleteModal, setShowConfirmDeleteModal] = useState(false);
     const openConfirmDeleteModal = () => setShowConfirmDeleteModal(true);
     const closeConfirmDeleteModal = () => setShowConfirmDeleteModal(false);
+
     return (
-        <div
-            className="container-fluid d-flex justify-content-center align-items-center"
-            style={{ maxHeight: "90vh" }}
-        >
+        <div className="container-fluid d-flex flex-column justify-content-center align-items-center vh-100 container-safe">
             <div className="col-12 col-sm-10 col-md-8 col-lg-6">
                 <div className="d-flex flex-column justify-content-center align-items-center">
+                    {/* Header */}
                     <div className="row justify-content-between align-items-center w-100 p-3 border-bottom border-dark">
                         <p className="h1 m-0 col-12 col-md-6 text-center text-md-start">
                             Todo List
@@ -71,8 +70,13 @@ export default function TodoList({
                         </div>
                     </div>
 
+                    {/* Todo Items */}
                     <SimpleBar
-                        style={{ maxHeight: "70vh", margin: "0 1rem" }}
+                        style={{
+                            maxHeight: "70vh",
+                            overflowX: "hidden", 
+                            margin: "0 1rem",
+                        }}
                         className="w-100"
                     >
                         <div className={`${styles["itemList"]}`}>
@@ -96,12 +100,14 @@ export default function TodoList({
                         </div>
                     </SimpleBar>
 
+                    {/* Add Todo Modal */}
                     <ModalTextItem
                         show={showItemModal}
                         handleClose={closeItemModal}
                         handleAdd={handleAdd}
                     />
 
+                    {/* Confirm Delete Modal */}
                     <DeleteAll
                         show={showConfirmDeleteModal}
                         handleClose={closeConfirmDeleteModal}
