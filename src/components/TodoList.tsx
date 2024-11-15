@@ -3,7 +3,7 @@ import { Todo } from "../types/types";
 import styles from "../styles/TodoList.module.css";
 import { useState } from "react";
 import ModalTextItem from "./ModalText";
-import AddBoxIcon from '@mui/icons-material/AddBox';
+import AddBoxIcon from "@mui/icons-material/AddBox";
 import DeleteAll from "./DeleteAll";
 import { Button } from "react-bootstrap";
 import SimpleBar from "simplebar-react";
@@ -39,7 +39,7 @@ export default function TodoList({
     return (
         <div
             className="container-fluid d-flex justify-content-center align-items-center"
-            style={{ maxHeight: "95vh" }}
+            style={{ maxHeight: "90vh" }}
         >
             <div className="col-12 col-sm-10 col-md-8 col-lg-6">
                 <div className="d-flex flex-column justify-content-center align-items-center">
@@ -53,7 +53,7 @@ export default function TodoList({
                                 className={`btn border-0 p-0 pe-1 ${styles["hover-glow"]}`}
                                 onClick={openItemModal}
                             >
-                                <AddBoxIcon color = "inherit" fontSize="large" />
+                                <AddBoxIcon color="inherit" fontSize="large" />
                             </button>
                             <Button
                                 variant={
