@@ -133,10 +133,13 @@ function App() {
     };
 
     return (
-        <div className="d-flex flex-column justify-content-center align-items-center vh-100">
+        <div className="d-flex flex-column justify-content-center align-items-center vh-100 overflow-hidden">
+            {/* Header */}
             <div className="w-100 position-fixed top-0 start-0 m-3">
                 <Header />
             </div>
+
+            {/* Main Content */}
             {window.location.pathname !== "/" ? (
                 <TodoList
                     todos={todos}
@@ -156,6 +159,7 @@ function App() {
                         </p>
                     </h1>
 
+                    {/* URL Input for Larger Screens */}
                     <div className="d-flex mx-1 d-none d-lg-block">
                         <small>Start by:</small>{" "}
                         <code className="d-flex font-weight-bold align-items-center">
@@ -168,6 +172,7 @@ function App() {
                         </code>
                     </div>
 
+                    {/* URL Input for Smaller Screens */}
                     <div className="d-flex flex-column align-items-center justify-content-center d-lg-none">
                         <code className="font-weight-bold align-items-center">
                             https://minimalist-todo-list-weld.vercel.app/
@@ -175,7 +180,8 @@ function App() {
                         <RouteBox placeholder="..." background="#efefef" />
                     </div>
 
-                    <p className="position-absolute bottom-0 start-50 translate-middle-x text-muted mb-3 small small-md">
+                    {/* Footer */}
+                    <p className="position-fixed bottom-0 start-50 translate-middle-x text-muted mb-3 small small-md w-100 text-center">
                         <span className="d-none d-md-inline">
                             This is a simple todo app where you can create and
                             manage your tasks. However, one person can delete
