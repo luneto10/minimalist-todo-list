@@ -176,16 +176,21 @@ function App() {
                     </div>
                 </div>
             )}
-            <p className="text-muted mb-3 small small-md">
-                <span className="d-none d-md-inline">
-                    This is a simple todo app where you can create and manage
-                    your tasks. However, one person can delete all tasks...
-                </span>
-                <span className="d-inline d-md-none">
-                    This is a simple todo app, but remember, anyone can delete
-                    all...
-                </span>
-            </p>
+            {window.location.pathname !== "/" ? (
+                <span className="mb-3 small small-md"></span>
+            ) : (
+                <p className="text-muted mb-3 small small-md">
+                    <span className="d-none d-md-inline">
+                        This is a simple todo app where you can create and
+                        manage your tasks. However, one person can delete all
+                        tasks...
+                    </span>
+                    <span className="d-inline d-md-none">
+                        This is a simple todo app, but remember, anyone can
+                        delete all...
+                    </span>
+                </p>
+            )}
         </div>
     );
 }
