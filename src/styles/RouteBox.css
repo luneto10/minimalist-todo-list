@@ -1,0 +1,4 @@
+.custom-placeholder::placeholder {
+    color: #726f6f; 
+    opacity: 1;
+  }

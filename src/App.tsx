@@ -8,9 +8,22 @@ import Header from "./components/Header";
 
 function App() {
     const [todos, setTodos] = useState<Todo[]>([]);
+    const [userIp, setUserIp] = useState("");
+
     const apiBaseUrl = import.meta.env.VITE_API_BASE_URL;
 
     useEffect(() => {
+        // Fetch the user's IP address on initial load
+        axios
+            .get("https://api.ipify.org?format=json")
+            .then((response) => {
+                setUserIp(response.data.ip);
+            })
+            .catch((error) => {
+                console.error("Error fetching IP address:", error);
+            });
+
+        // Get todos based on the URL path
         const pathSegments = window.location.pathname.substring(1);
         getAll(pathSegments);
     }, []);
@@ -66,6 +79,7 @@ function App() {
                 url: pathSegments,
                 completed: false,
                 createdAt: new Date().toISOString(),
+                userIP: userIp, // Include the IP address here
             })
             .then((response) => {
                 setTodos((prevTodos) => [...prevTodos, response.data]);
@@ -135,26 +149,27 @@ function App() {
                 />
             ) : (
                 <div className="text-center my-5">
-                    <h1 className="display-4 mb-4 mx-1">
-                        Welcome to the Todo App!
-                    </h1>
+                    <h1 className="display-4 mb-1 mx-1">Taskr</h1>
                     <p className="lead text-muted mb-3 mx-1 d-none d-lg-block">
-                        Add any text to the end of the URL to start your own
-                        list.
+                        A collaborative and real-time task manager.
                     </p>
                     <p className="lead text-muted mb-3 mx-1 d-lg-none">
                         Add any text to the field, click go and start a list.
                     </p>
-                    <p className="mx-1 d-none d-lg-block">
+                    <div className="d-flex mx-1 d-none d-lg-block">
                         <small>Start by:</small>{" "}
-                        <code className="font-weight-bold">
-                            https://minimalist-todo-list.vercel.app/
-                            {"{your-name}"}
+                        <code className="d-flex font-weight-bold align-items-center">
+                            https://minimalist-todo-list-weld.vercel.app/
+                            <RouteBox
+                                placeholder="..."
+                                size="sm"
+                                background="#efefef"
+                            />
                         </code>
-                    </p>
+                    </div>
 
                     <div className="d-flex justify-content-center d-lg-none">
-                        <RouteBox />
+                        <RouteBox placeholder="Start by typing your name" background="#efefef" />
                     </div>
 
                     <p className="position-absolute bottom-0 start-50 translate-middle-x text-muted mb-3 small small-md">
