@@ -7,3 +7,13 @@ html, body {
     background-color: #dfdfdf;
     font-family: "Alegreya", serif;
 }
+
+.large-heading {
+    font-size: 3rem; /* Tamanho padrão para telas grandes */
+}
+
+@media (max-width: 576px) {
+    .large-heading {
+        font-size: 2.5rem; /* Tamanho fixo para telas pequenas, como celulares */
+    }
+}

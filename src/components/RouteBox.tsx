@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Form, Button } from "react-bootstrap";
 import "../styles/RouteBox.css";
+import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 
 interface RouteBoxProps {
     placeholder: string;
@@ -8,8 +9,11 @@ interface RouteBoxProps {
     background?: string;
 }
 
-
-function MyForm({ placeholder, size = "sm", background = "white" }: RouteBoxProps) {
+function MyForm({
+    placeholder,
+    size = "sm",
+    background = "white",
+}: RouteBoxProps) {
     const [path, setPath] = useState("");
 
     const handleSubmit = (e: React.FormEvent) => {
@@ -20,14 +24,17 @@ function MyForm({ placeholder, size = "sm", background = "white" }: RouteBoxProp
 
     return (
         <Form onSubmit={handleSubmit} className="d-flex align-items-center">
-            <Form.Group controlId="formBasicInput" className="mx-2 text-muted border">
+            <Form.Group
+                controlId="formBasicInput"
+                className="mx-2 text-muted border"
+            >
                 <Form.Control
                     type="text"
                     placeholder={placeholder}
                     value={path}
                     onChange={(e) => setPath(e.target.value)}
-                    size={size} 
-                    style={{ backgroundColor: background}}
+                    size={size}
+                    style={{ backgroundColor: background }}
                     className="custom-placeholder"
                 />
             </Form.Group>
@@ -35,10 +42,10 @@ function MyForm({ placeholder, size = "sm", background = "white" }: RouteBoxProp
                 variant="outline-primary"
                 type="submit"
                 onClick={handleSubmit}
-                className="custom-square-button"
+                className="custom-button"
                 size={size}
             >
-                Go
+                <ArrowForwardIosIcon fontSize="small" />
             </Button>
         </Form>
     );

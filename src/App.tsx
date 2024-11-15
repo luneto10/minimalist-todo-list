@@ -149,13 +149,13 @@ function App() {
                 />
             ) : (
                 <div className="text-center my-5">
-                    <h1 className="display-4 mb-1 mx-1">Taskr</h1>
-                    <p className="lead text-muted mb-3 mx-1 d-none d-lg-block">
-                        A collaborative and real-time task manager.
-                    </p>
-                    <p className="lead text-muted mb-3 mx-1 d-lg-none">
-                        Add any text to the field, click go and start a list.
-                    </p>
+                    <h1 className="display-1 mb-0 mx-1">
+                        Taskr
+                        <p className="lead text-muted mt-0 mb-3 mx-1">
+                            A collaborative and real-time task manager.
+                        </p>
+                    </h1>
+
                     <div className="d-flex mx-1 d-none d-lg-block">
                         <small>Start by:</small>{" "}
                         <code className="d-flex font-weight-bold align-items-center">
@@ -168,8 +168,11 @@ function App() {
                         </code>
                     </div>
 
-                    <div className="d-flex justify-content-center d-lg-none">
-                        <RouteBox placeholder="Start by typing your name" background="#efefef" />
+                    <div className="d-flex flex-column align-items-center justify-content-center d-lg-none">
+                        <code className="font-weight-bold align-items-center">
+                            https://minimalist-todo-list-weld.vercel.app/
+                        </code>
+                        <RouteBox placeholder="..." background="#efefef" />
                     </div>
 
                     <p className="position-absolute bottom-0 start-50 translate-middle-x text-muted mb-3 small small-md">

@@ -34,7 +34,6 @@
     opacity: 0.3;
 }
 
-
 @media screen and (max-width: 768px) {
     .itemList {
         max-width: 100%;
