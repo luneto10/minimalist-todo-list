@@ -4,4 +4,5 @@ export type Todo = {
     completed: boolean;
     url: string;
     createdAt: string;
+    userIp: string;
 };

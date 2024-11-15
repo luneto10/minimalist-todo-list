@@ -1,7 +1,19 @@
 import { useState } from "react";
 import { Form, Button } from "react-bootstrap";
+import "../styles/RouteBox.css";
+import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 
-function MyForm() {
+interface RouteBoxProps {
+    placeholder: string;
+    size?: "sm" | "lg";
+    background?: string;
+}
+
+function MyForm({
+    placeholder,
+    size = "sm",
+    background = "white",
+}: RouteBoxProps) {
     const [path, setPath] = useState("");
 
     const handleSubmit = (e: React.FormEvent) => {
@@ -12,22 +24,28 @@ function MyForm() {
 
     return (
         <Form onSubmit={handleSubmit} className="d-flex align-items-center">
-            <Form.Group controlId="formBasicInput" className="flex-grow-1 me-2">
+            <Form.Group
+                controlId="formBasicInput"
+                className="mx-2 text-muted border"
+            >
                 <Form.Control
                     type="text"
-                    placeholder="Start by typing your name"
+                    placeholder={placeholder}
                     value={path}
                     onChange={(e) => setPath(e.target.value)}
-                    className="my-2"
+                    size={size}
+                    style={{ backgroundColor: background }}
+                    className="custom-placeholder"
                 />
             </Form.Group>
             <Button
                 variant="outline-primary"
                 type="submit"
                 onClick={handleSubmit}
-                className="custom-square-button"
+                className="custom-button"
+                size={size}
             >
-                Go
+                <ArrowForwardIosIcon fontSize="small" />
             </Button>
         </Form>
     );
